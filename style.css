@@ -1,0 +1,14 @@
+/* Roboto Black */
+@font-face {
+	font-family: 'RobotoB'; 
+	src: url(fonts/Roboto-Black.ttf); 
+}
+
+.main-container {
+    padding-left: 20%;
+    padding-right: 20%;
+    padding-top: 2%;
+}
+.invisible {
+    display: none;
+}
