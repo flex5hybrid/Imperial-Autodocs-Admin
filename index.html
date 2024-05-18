@@ -54,6 +54,40 @@
     <div class="form-floating">
         <textarea class="form-control" id="readydocInput" style="height: 10vh"></textarea>
       </div>
+      <br>
+      <hr>
+      <h2>Составить объвление</h2>
+      <div>Номер станции подтягивается из предыдущей формы.</div>
+      <br>
+      <select class="form-select" aria-label="Выберите доки" id="annType" onchange="annChange()">
+        <option value="0">Выберите тип объявления</option>
+        <option value="1">Приветствие станици</option>
+        <option value="2">Запрос отчёта о цели</option>
+        <option value="3">Получение отчёта о цели</option>
+        <option value="4">Неполучение отчёта не по форме</option>
+        <option value="5">Получание отчёта не по форме</option>
+        <option value="6">Отчёт о выполнении цели</option>
+        <option value="7">Отчёт о цели в процессе выполнения</option>
+        <option value="8">Отчёт о провале цели</option>
+        <option value="9">Инструкции (запрос отчётности)</option>
+        <option value="10">Объявление о назначении ВрИО Капитана</option>
+        <option value="11">ВрИО Капитан назначен</option>
+        <option value="12">ВрИО Капитан не назначен</option>
+        <option value="13">Отчёты не получены</option>
+        <option value="14">Отзыв эвакуационного шаттла</option>
+        <option value="15">Своё объявление</option>
+      </select>
+      <br>
+      <div class="mb-3 invisible" id="annInputDiv">
+        <label for="exampleFormControlTextarea1" class="form-label">Текст объявления</label>
+        <input class="form-control" id="annInput"></input>
+      </div>
+      <br>
+      <button type="submit" class="btn btn-primary" onclick="setAnn()">Составить объявление</button>
+      <br><br>
+      <div class="form-floating">
+        <textarea class="form-control" id="readyannInput" style="height: 10vh; margin-bottom: 40%;"></textarea>
+      </div>
     </div>
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   </body>

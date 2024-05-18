@@ -256,6 +256,59 @@ ${inputText}
       }
       return text;
 }
+function create_announcment(annType, stationName, inputText) {
+    let text;
+    switch(annType) {
+        case "1":
+            text = `Станция ${stationName}, говорит Центральное Командование. На данную смену на службе зачислены операторы Центрального Командования. Ожидаем от вас скорое выполнение цели станции и обратную связь. Слава НТ!`
+            break;
+        case "2":
+            text = `Станция ${stationName}, говорит Центральное Командование. Отправлен запрос о цели станции. Ответ ожидается в течение 15 минут. Слава НТ!`
+            break;
+        case "3":
+            text = `Станция ${stationName}, говорит Центральное Командование. Внимание Командованию станции. Отчёт о цели был получен. В течении 10-ти минут ожидайте дальнейших инструкций. Слава НТ!`
+            break;
+        case "4":
+            text = `Станция ${stationName}, говорит Центральное Командование. По истечении 15-ти минут нами так и не был получен отчёт о цели. В связи с этим, главам будет урезана зарплата. Слава НТ!`
+            break;
+        case "5":
+            text = `Станция ${stationName}, говорит Центральное Командование. Нами был получен юридически неправильно заполненный отчёт. Напоминание: любые отчёты не по форме автоматически утилизируются и не проверяются. Вам предписано отправить запрашиваемый юридически верный отчёт немедленно.`;
+            break;
+        case "6":
+            text = `Станция ${stationName}, говорит Центральное Командование. Внимание командованию станции. Отчёт о завершении цели был получен. Приказ о начале смены текущего экипажа сформирован, оформлен и перенаправлен на факс. Отличная работа, Слава НТ!`;
+            break;
+        case "7":
+            text = `Станция ${stationName}, говорит Центральное Командование. Проанализировав ваши отчёты, мы пришли к выводу: цель смены всё ещё может быть выполнена! В кратчайшие сроки ожидаем полного её выполнения, как и отчёта по форме согласованной стандартами NanoTrasen. Слава НТ!`
+            break;
+        case "8":
+            text = `Станция ${stationName}, говорит Центральное Командование. Получили ваш отчёт. В связи с ситуацией на станции, цель смены признана проваленной! Вам одобрены протоколы эвакуации, плата за смену отменена. Слава НТ!`;
+            break;
+        case "9":
+            text = `Станция ${stationName}, говорит Центральное Командование. Для формирования общей картины о возможности выполнения цели, вам на факс были высланы инструкции. Слава НТ!`
+            break;
+        case "10":
+            text = `Станция ${stationName}, говорит Центральное Командование. В связи с изначальной неукомплектованностью персонала, вам были отправлены дальнейшие инструкции по назначению ВрИО капитана. Ожидаем ответ в течении 20-ти минут. Слава НТ!`;
+            break;
+        case "11":
+            text = `Станция ${stationName}, говорит Центральное Командование. Мы получили отчёт о назначении ВрИО капитана. Поздравляем нового ВрИО капитана! Надеемся на ваше плодотворное сотрудничество. Слава НТ!`;
+            break;
+        case "12":
+            text = `Станция ${stationName}, говорит Центральное Командование. Мы так и не получили отчёт о назначении ВрИО капитана. Если в течении 10-ти минут ситуация не изменится, жалование всех сотрудников станции будет сокращено на 15%. Немедленно организуйтесь. Слава НТ!`;
+            break;
+        case "13":
+            text = `Станция ${stationName}, говорит Центральное Командование. Так и не получили один из запрошенных отчётов. Ожидаем его получение в течении 5-ти минут. Слава НТ!`;
+            break;
+        case "14":
+            text = `Станция ${stationName}, говорит Центральное Командование. Мы фиксируем попытку вызова эвакуационного шаттла без получения соответствующих разрешений или удостоверяющий процесс документов. Командованию станции предписано немедленно доложить ситуацию нам на факс. Слава НТ!`;
+            break;
+        case "15":
+            text= `Станция ${stationName}, говорит Центральное Командование. ${inputText}`;
+            break;
+        default:
+            text = "Ошибка. Вероятно, что-то не введено";
+      }
+      return text;
+}
 function setForm() {
     // получаем элемент
     let stationName = document.getElementById('stationName').value;
@@ -269,9 +322,20 @@ function setForm() {
     // пихаем док
     let readydocInput = document.getElementById("readydocInput");
     readydocInput.value = readydoc;
+
+}
+function setAnn() {
+    // получаем данные
+    let stationName = document.getElementById('stationName').value;
+    let annType = document.getElementById('annType').value;
+    let inputText = document.getElementById('annInput').value;
+    // создаем объявление
+    let ann = create_announcment(annType, stationName, inputText);
+    // пихаем объявление
+    let annInput = document.getElementById("readyannInput");
+    readyannInput.value = ann;
 }
 function formChange() {
-    
     let docType = document.getElementById('docType').value;
     document.getElementById("inputTextDiv").classList.add("invisible");
     document.getElementById("responsibleDiv").classList.add("invisible");
@@ -279,5 +343,12 @@ function formChange() {
         document.getElementById("inputTextDiv").classList.remove("invisible");
     } else if (docType == "2" || docType == "3" || docType ==  "4") {
         document.getElementById("responsibleDiv").classList.remove("invisible");
+    }
+}
+function annChange() {
+    let annType = document.getElementById('annType').value;
+    document.getElementById("annInputDiv").classList.add("invisible");
+    if (annType == "15" ) {
+        document.getElementById("annInputDiv").classList.remove("invisible");
     }
 }
